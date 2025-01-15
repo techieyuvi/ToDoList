@@ -41,4 +41,8 @@ public class Todo {
         this.task = task;
         this.completed = completed;
     }
+
+    public Todo(){
+
+    }
 }
