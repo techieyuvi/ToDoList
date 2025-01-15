@@ -3,7 +3,6 @@ package app.experiment.to_do_list.model;
 
 import app.experiment.to_do_list.entity.Todo;
 import app.experiment.to_do_list.repository.TodoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +11,11 @@ import java.util.Optional;
 @Service
 public class TodoService {
 
-    private TodoRepository todoRepository;
+    private final TodoRepository todoRepository;
+
+    public TodoService(TodoRepository todoRepository){
+        this.todoRepository = todoRepository;
+    }
 
     public List<Todo> getAllTodos(){
         return todoRepository.findAll();
