@@ -1,17 +1,20 @@
 package app.experiment.to_do_list.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Todo {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
 
     private String task;
     private boolean completed;
+
+    @Enumerated(EnumType.STRING)
+    private Priority priority;
 
     public long getId(){
         return id;
@@ -40,6 +43,14 @@ public class Todo {
     public Todo(String task,boolean completed){
         this.task = task;
         this.completed = completed;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
     public Todo(){

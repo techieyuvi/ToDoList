@@ -1,6 +1,7 @@
 package app.experiment.to_do_list.model;
 
 
+import app.experiment.to_do_list.entity.Priority;
 import app.experiment.to_do_list.entity.Todo;
 import app.experiment.to_do_list.repository.TodoRepository;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,17 @@ public class TodoService {
 
     public void deleteTodo(Long id){
         todoRepository.deleteById(id);
+    }
+
+    public List<Todo> findAllCompletedTrue(){
+       return todoRepository.findAllByCompletedTrue();
+    }
+
+    public List<Todo> findAllCompletedFalse(){
+        return todoRepository.findAllByCompletedFalse();
+    }
+
+    public List<Todo> getAllTodosByTask(String task, Priority priority){
+        return todoRepository.findByTaskContainingAndPriority(task,priority);
     }
 }

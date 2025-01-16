@@ -1,10 +1,10 @@
 package app.experiment.to_do_list.repository;
 
+import app.experiment.to_do_list.entity.Priority;
 import app.experiment.to_do_list.entity.Todo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 
@@ -14,4 +14,9 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
 
     List<Todo> findByCompleted(boolean completed);
 
+    List<Todo> findAllByCompletedTrue();
+
+    List<Todo> findAllByCompletedFalse();
+
+    List<Todo> findByTaskContainingAndPriority(String task, Priority priority);
 }
